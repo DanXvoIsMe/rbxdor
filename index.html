@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox Backdoored Games List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .game {
+            background: #ddd;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .game img {
+            width: 100px;
+            height: 100px;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+        .game-details {
+            flex: 1;
+        }
+        .game-title {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .game-desc {
+            margin: 5px 0;
+        }
+        .game-author {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+	<script>
+		async function loadGames() {
+            try {
+                const response = await fetch('games.json');
+                const games = await response.json();
+                const container = document.querySelector('.container');
+                
+                games.forEach(game => {
+                    const gameElement = document.createElement('div');
+                    gameElement.classList.add('game');
+                    gameElement.innerHTML = `
+                        <img src="${game.thumbnail}" alt="Game Thumbnail">
+                        <div class="game-details">
+                            <div class="game-title">${game.name} - <a href="${game.link}">Link</a></div>
+                            <div class="game-desc">${game.description}</div>
+                            <div class="game-author">Author: ${game.author}</div>
+                            <div class="game-how">How to use: ${game.howToUse}</div>
+                        </div>
+                    `;
+                    container.appendChild(gameElement);
+                });
+            } catch (error) {
+                console.error('Error loading games:', error);
+            }
+        }
+        
+        window.onload = loadGames;
+	</script>
+</head>
+<body>
+    <div class="container">
+        <h1>RBXDor</h1>
+        <p>List of backdoored games.</p>
+    </div>
+</body>
+</html>
